@@ -1,0 +1,16 @@
+.dock{
+    position: fixed;
+    height: 6rem;
+    width: calc(100% - 2rem);
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    box-sizing: border-box;
+    left: 0;
+    bottom: 0;
+}
+
+.item{
+    max-height: 4rem;
+    width: auto;
+}
