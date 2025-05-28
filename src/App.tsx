@@ -23,14 +23,15 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Landing />} />
-        <Route path='auth' element={<Auth />}/>
-        <Route path='lotteries' element={<Lottery />}/>
+        <Route path='wallet' element={<Auth />}/>
+        <Route path='lottery' element={<Lottery />}/>
         <Route path='event/:event_id' element={<BetEvent />}/>
         <Route path='proposal'>
           <Route index         element={<Proposals />}/>
           <Route path='new'    element={<ProposalNew />}/>
           <Route path=':proposal_id/review' element={<ProposalReview />} />
         </Route>
+        <Route path="*" element={<div>404</div>}/>
       </Route>
     </Routes>
     </BrowserRouter>
