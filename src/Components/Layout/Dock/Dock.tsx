@@ -10,6 +10,8 @@ import MailF0 from "@/assets/material-theme/icons/mail_nofilled.svg?react"
 
 import { Link, useLocation } from "react-router"
 import styles from "./Dock.module.scss"
+import { useAccount } from "wagmi"
+import { truncateAddress } from "@/utils"
 
 const checkPath 
     : (path: string, pattern: string, exact?: boolean) => boolean
@@ -22,7 +24,9 @@ const checkPath
 
 const Dock = () => {
     const location = useLocation().pathname
-    console.log(location)
+
+    const { isConnected } = useAccount()
+    const { address } = useAccount()
 
     return <aside className={styles.dock}>
         <nav>
@@ -52,7 +56,7 @@ const Dock = () => {
                         isActive: checkPath(location, "proposal")
                     },
                     {
-                        title: "Wallet",
+                        title: isConnected ? truncateAddress(address||"") : "Wallet",
                         icon0: WalletF0,
                         icon1: WalletF1,
                         path : "/wallet",
