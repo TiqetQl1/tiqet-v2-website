@@ -60,4 +60,40 @@
             width: auto;
         }
     }
+    .rights{
+        h2{
+            font-size: 22px;
+            line-height: 28px;
+            padding: 10px 0;
+        }
+        ul{
+            display: flex;
+            flex-flow: column nowrap;
+            li{
+                display: flex;
+                flex-flow: row nowrap;
+                padding: 8px 16px;
+                gap: 16px;
+                align-items: center;
+                i{
+                    width: 24px;
+                    height: 24px;
+                    flex: 0 0 auto;
+                }
+                dl{
+                    display: block;
+                    flex: 1 0 0;
+                    dt{
+                        font-size: 12px;
+                        line-height: 16px;
+                    }
+                    dd{
+                        font-size: 16px;
+                        line-height: 24px;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
 }

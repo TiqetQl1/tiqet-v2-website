@@ -1,10 +1,26 @@
 /// <reference types="vite-plugin-svgr/client" />
 import DisconnectSVG from "@/assets/material-theme/icons/singles/account_circle_off.svg?react"
+import NotOk from "@/assets/material-theme/icons/singles/close.svg?react"
+import Ok from "@/assets/material-theme/icons/singles/check.svg?react"
+import Person from "@/assets/material-theme/icons/singles/person.svg?react"
 
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState, type FC } from "react"
 import styles from "./Auth.module.scss"
 import { useAccount, useConnect, useDisconnect, type Connector } from "wagmi"
 import { truncateAddress } from "@/utils"
+import { roles, type AccessLevel, type AccessLevels, type AccessLevelState } from "@/hooks/useAuthorization"
+import { AccessLevelContext } from "@/utils/Contexts/accessLevelContext"
+import Progress from "../Shared/Progress/Progress"
+
+const rolesDescriptions
+    : Record<AccessLevels, string>
+    = {
+        "owner": "Change contract configs",
+        "admin": "Review proposals",
+        "proposer": "Suggest new events",
+        "nftholder": "Suggest new events",
+        "user": "Contribute in events and lotteries"
+    }
 
 const Auth = () => {
     const { connectors, connect } = useConnect()
@@ -43,6 +59,16 @@ const Auth = () => {
                 </span>
             </button>
         </div>
+        <section className={styles.rights}>
+            <h2>
+                You have access to
+            </h2>
+            <ul>
+                {
+                    roles.map(role=><Right key={`single-right-${role}`} ship={role} />)
+                }
+            </ul>
+        </section>
     </main>
 
     return <main className={className}>
@@ -67,6 +93,32 @@ const Auth = () => {
         }
         </ul>
     </main>
+}
+
+const Right : FC<{ship: AccessLevels}> = ({ship}) => {
+
+    const accessLevel : AccessLevel = useContext(AccessLevelContext)
+    const state : AccessLevelState = accessLevel.roles[ship]
+
+    return <li>
+        <i>
+            <Person />
+        </i>
+        <dl>
+            <dt>
+                {`${ship}`}
+            </dt>
+            <dd>
+                {`${rolesDescriptions[ship]}`}
+            </dd>
+        </dl>
+        <i>
+            {
+                state == "loading" ?  <Progress/> :
+                (state == true ? <Ok/> : <NotOk/>)
+            }
+        </i>
+    </li>
 }
 
 function WalletOption({

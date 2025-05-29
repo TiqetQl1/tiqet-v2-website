@@ -1,4 +1,3 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import Layout from './Components/Layout/Layout'
@@ -9,12 +8,17 @@ import ProposalNew from './Components/ProposalNew/ProposalNew'
 import ProposalReview from './Components/ProposalReview/ProposalReview'
 import Lottery from './Components/Lottery/Lottery'
 import BetEvent from './Components/BetEvent/BetEvent'
+import { AccessLevelContext } from './utils/Contexts/accessLevelContext'
+import { useAuthorization } from './hooks/useAuthorization'
 
 
 function App() {
 
+  const accessLevel = useAuthorization()
+
   return (
-        <BrowserRouter>
+    <AccessLevelContext.Provider value={accessLevel}>
+    <BrowserRouter>
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Landing />} />
@@ -30,6 +34,7 @@ function App() {
       </Route>
     </Routes>
     </BrowserRouter>
+    </AccessLevelContext.Provider>
   )
 }
 

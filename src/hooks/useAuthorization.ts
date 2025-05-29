@@ -9,15 +9,10 @@ import { useAccount } from "wagmi";
 
 // owner, admin, proposer, holder, user
 export type AccessLevelState = "loading"|boolean
-export type AccessLevels = "owner"|"admin"|"proposer"|"nftholder"
+export const roles = ["owner", "admin", "proposer", "nftholder", "user"] as const;
+export type AccessLevels = typeof roles[number];
 export type AccessLevel = {
-    roles: {
-        "owner": AccessLevelState,
-        "admin": AccessLevelState,
-        "proposer": AccessLevelState,
-        "nftholder": AccessLevelState,
-        "user": AccessLevelState
-    },
+    roles: Record<AccessLevels, AccessLevelState>,
     level: number,
 }
 
