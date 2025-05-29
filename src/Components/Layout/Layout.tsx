@@ -22,7 +22,6 @@ const Layout = () => {
 
     return <div className={"root "+activeTheme}>
         <Outlet />
-        ^
         <Dock />
     </div>
 }
