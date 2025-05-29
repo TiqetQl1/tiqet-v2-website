@@ -1,6 +1,7 @@
 .auth{
-    padding: 64px 16px;
+    padding: min(64px, 8vh) 16px;
     display: flex;
+    gap: 40px;
     flex-flow: column nowrap;
     justify-content: start;
     h2{
@@ -49,9 +50,18 @@
             }
         }
         button{
+            &:hover{
+                filter: brightness(1.08);
+            }
+            background-color: var(--md-sys-color-primary);
+            *{
+                color: var(--md-sys-color-on-primary);
+                fill: var(--md-sys-color-on-primary);
+            }
             &, span{
                 font-size: 14px;
                 line-height: 20px;
+                font-weight: 400;
             }
             svg{
                 height: 20px;
