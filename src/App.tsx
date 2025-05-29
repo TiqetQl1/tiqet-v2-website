@@ -1,8 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router'
-import { WagmiProvider } from 'wagmi'
-import { wagmiConfig } from './utils/wagmiConfig'
 import Layout from './Components/Layout/Layout'
 import Landing from './Components/Landing/Landing'
 import Auth from './Components/Auth/Auth'
@@ -12,14 +10,11 @@ import ProposalReview from './Components/ProposalReview/ProposalReview'
 import Lottery from './Components/Lottery/Lottery'
 import BetEvent from './Components/BetEvent/BetEvent'
 
-const queryClient = new QueryClient()
 
 function App() {
 
   return (
-    <WagmiProvider config={wagmiConfig}>
-    <QueryClientProvider client={queryClient}>
-    <BrowserRouter>
+        <BrowserRouter>
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Landing />} />
@@ -35,8 +30,6 @@ function App() {
       </Route>
     </Routes>
     </BrowserRouter>
-    </QueryClientProvider>
-    </WagmiProvider>
   )
 }
 
