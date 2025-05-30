@@ -1,0 +1,48 @@
+.p_new{
+    padding: 45px 16px;
+    padding-bottom: 0px;
+    display: flex;
+    flex-flow: column nowrap;
+    header{
+        flex: 0 0 auto;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        h2{
+            font-size: 28px;
+            line-height: 36px;
+        }
+        button{
+            background-color: var(--md-sys-color-primary);
+        }
+    }
+    section{
+        flex: 1 0 0 ;
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 10px;
+        input{
+            &,
+            &::placeholder{
+                font-size: 16px;
+                line-height: 24px;
+            }
+        }
+        textarea{
+            min-width: 100%;
+            max-width: 100%;
+            resize: none;
+            min-height: calc(100vh - 194px);
+            padding-bottom: 45px;
+            border-bottom-left-radius: var(--border-radius-none);
+            border-bottom-right-radius: var(--border-radius-none);
+            
+            &::placeholder{
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+    }
+}

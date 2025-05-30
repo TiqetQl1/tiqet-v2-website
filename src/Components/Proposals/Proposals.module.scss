@@ -1,0 +1,33 @@
+.proposals{
+    padding: 0 16px;
+    &, h2, ul, li{
+        display: block;
+    }
+    h2{
+        font-size: 22px;
+        line-height: 28px;
+        padding: 10px 0;
+    }
+    .FAB{
+        position: fixed;
+        bottom: 64px;
+        right: max(calc(calc(100vw / 2) - calc(var(--max-width) / 2)), 0px);
+        margin: 16px;
+        background-color: var(--md-sys-color-primary-container);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 56px;
+        height: 56px;
+        border-radius: var(--border-radius-l);
+        border: none!important;
+        overflow: hidden;
+        svg{
+            width: 24px;
+            height: 24px;
+            *{
+                fill: var(--md-sys-color-on-primary-container);
+            }
+        }
+    }
+}
