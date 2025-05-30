@@ -23,14 +23,14 @@
 
   --max-width: 500px;
 
-  --border-raduis-none: 0px;
-  --border-raduis-xs: 4px;
-  --border-raduis-s: 8px;
-  --border-raduis-m: 12px;
-  --border-raduis-l: 16px;
-  --border-raduis-xl: 20px;
-  --border-raduis-xxl: 28px;
-  --border-raduis-full: 1000px;
+  --border-radius-none: 0px;
+  --border-radius-xs: 4px;
+  --border-radius-s: 8px;
+  --border-radius-m: 12px;
+  --border-radius-l: 16px;
+  --border-radius-xl: 20px;
+  --border-radius-xxl: 28px;
+  --border-radius-full: 1000px;
 
 }
 html, body {
@@ -58,7 +58,6 @@ main{
 }
 
 button,
-button:not(:disabled):hover,
 button:focus-visible,
 button:focus{
   outline: none;
@@ -78,18 +77,61 @@ button{
   justify-content: center;
   gap: 4px;
   padding: 6px 12px;
-  background-color: var(--md-sys-color-surface);
+  background-color: var(--md-sys-color-primary);
   transition: all 200ms;
   border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: var(--border-raduis-full);
+  border-radius: var(--border-radius-full);
   overflow: hidden;
+  *{
+    fill: var(--md-sys-color-on-primary);
+    color: var(--md-sys-color-on-primary);
+  }
+  svg{
+    width: 20px;
+    height: 20px;
+  }
+  span{
+    font-size: 14px;
+    line-height: 20px;
+  }
 }
 
 button:not(:disabled):hover{
-  background-color: var(--md-sys-color-outline-variant);
-  
+  filter: brightness(1.08);
 }
 
 button:disabled{
   filter: brightness(0.8);
+}
+
+input, textarea{
+  --border-inputs: var(--border-radius-l);
+  &,
+  &:hover,
+  &:focus,
+  &:focus-visible,
+  &:focus-within{
+    background-color: var(--md-sys-color-on-primary);
+    border: none;
+    outline: none;
+    border-radius: var(--border-inputs);
+  }
+
+  
+  &::placeholder{
+    transition: all 150ms;
+    color: var(--md-sys-color-on-surface);
+  }
+  &:focus,
+  &:focus-within{
+    &::placeholder{
+      color: rgb(255,255,255);
+    }
+  }
+}
+input{
+  padding: calc(var(--border-inputs) / 2) var(--border-inputs);
+}
+textarea{
+  padding: var(--border-inputs);
 }

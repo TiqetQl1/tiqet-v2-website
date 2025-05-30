@@ -7,7 +7,7 @@ import "@/assets/material-theme/css/light-mc.css"
 import "@/assets/material-theme/css/light.css"
 import Dock from "./Dock/Dock"
 import { useState } from "react"
-import "./Layout.css"
+import "./Layout.scss"
 
 type ThemeClasses =
     "dark-high-contrast"
