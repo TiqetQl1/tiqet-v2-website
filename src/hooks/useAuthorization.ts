@@ -1,11 +1,10 @@
 import { wagmiConfig } from "@/utils/wagmiConfig";
 import { useEffect, useState } from "react";
 import { readContract } from "@wagmi/core";
-import { hardhat } from "viem/chains";
-
 import type { Abi } from 'viem';
 import { coreAbi, coreAddress } from '@/utils/Contracts/core'
 import { useAccount } from "wagmi";
+import { activeChain } from "@/utils/Contracts/activeChain";
 
 // owner, admin, proposer, holder, user
 export type AccessLevelState = "loading"|boolean
@@ -37,7 +36,7 @@ export function useAuthorization(){
             abi: coreAbi as Abi,
             functionName: `auth_is_${ship}`,
             args: [address],
-            chainId: hardhat.id
+            chainId: activeChain.id
         })
         await setAccessLevel(prev=>{
             // console.log(ship, res)

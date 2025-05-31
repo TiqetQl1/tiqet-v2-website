@@ -1,6 +1,7 @@
 import { http, createConfig } from 'wagmi'
 import { hardhat, ql1 } from 'wagmi/chains'
 import { injected, metaMask, safe/*, walletConnect */} from 'wagmi/connectors'
+import { activeChain } from './Contracts/activeChain'
 
 // const projectId = '<WALLETCONNECT_PROJECT_ID>'
 
@@ -12,8 +13,8 @@ export const wagmiConfig = createConfig({
     metaMask(),
     safe(),
   ],
-  chains: [hardhat],
+  chains: [activeChain],
   transports: {
-    [hardhat.id]: http()
+    [activeChain.id]: http()
   },
 })
