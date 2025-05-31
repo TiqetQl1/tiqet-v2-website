@@ -35,14 +35,15 @@ export function useAuthorization(){
         const res = await readContract(wagmiConfig,{
             address: coreAddress,
             abi: coreAbi as Abi,
-            functionName: "auth_is_"+ship,
+            functionName: `auth_is_${ship}`,
             args: [address],
             chainId: hardhat.id
         })
-        setAccessLevel(prev=>{
+        await setAccessLevel(prev=>{
             // console.log(ship, res)
-            prev.roles[ship] = (res == true)
-            if(res == true){
+            prev.roles[ship] = (res === true)
+            if(prev.roles[ship]===true){
+                // console.log(prev.roles[ship], ship, prev.level, level)
                 prev.level = Math.max(level, prev.level)
             }
             // console.log(prev)
@@ -53,16 +54,26 @@ export function useAuthorization(){
         })
     }
 
-    useEffect(()=>{
+    const refresh = async () => {
         if (!isConnected || !address) {
-            setAccessLevel(defaultAccessLevel);
-            return;
+            await setAccessLevel({
+                roles: {...defaultAccessLevel.roles},
+                level: defaultAccessLevel.level
+            });
         }else{
+            await setAccessLevel({
+                roles: {...defaultAccessLevel.roles},
+                level: 0
+            });
             check("owner", 4)
             check("admin", 3)
             check("proposer", 2)
             check("nftholder", 1)
         }
+    }
+
+    useEffect(()=>{
+        refresh()
     },[isConnected, address])
 
 
