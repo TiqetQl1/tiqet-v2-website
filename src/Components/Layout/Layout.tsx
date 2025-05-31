@@ -8,6 +8,7 @@ import "@/assets/material-theme/css/light.css"
 import Dock from "./Dock/Dock"
 import { useState } from "react"
 import "./Layout.scss"
+import 'react-loading-skeleton/dist/skeleton.css'
 
 type ThemeClasses =
     "dark-high-contrast"
