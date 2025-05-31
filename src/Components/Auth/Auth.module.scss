@@ -15,6 +15,14 @@
 
 .auth.connected_0{
     gap: 12px;
+    button{
+        color: var(--md-sys-color-on-surface);
+        background-color: transparent;
+        &:not(:disabled):hover,
+        &:not(:disabled):focus{
+            background-color: var(--md-sys-color-primary-container);
+        }
+    }
     ul{
         display: flex;
         flex-flow: row wrap;

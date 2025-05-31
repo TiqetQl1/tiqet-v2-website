@@ -3,9 +3,9 @@
   padding: 0;
   text-decoration: none;
   list-style: none;
-  color: inherit;
   fill: inherit;
   box-sizing: border-box!important;
+  color: inherit;
 }
 
 :root, html {
@@ -31,7 +31,6 @@
   --border-radius-xl: 20px;
   --border-radius-xxl: 28px;
   --border-radius-full: 1000px;
-
 }
 html, body {
   max-width: 100vw;
@@ -82,10 +81,8 @@ button{
   border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: var(--border-radius-full);
   overflow: hidden;
-  *{
-    fill: var(--md-sys-color-on-primary);
-    color: var(--md-sys-color-on-primary);
-  }
+  fill: var(--md-sys-color-on-primary);
+  color: var(--md-sys-color-on-primary);
   svg{
     width: 20px;
     height: 20px;

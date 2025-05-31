@@ -3,6 +3,7 @@ import EditSvg from "@/assets/material-theme/icons/singles/edit.svg?react";
 
 import { Link } from "react-router"
 import styles from "./Proposals.module.scss"
+import Accessable from "../Shared/Accessable/Accessable";
 
 const Proposals = () => {
     return <main className={styles.proposals}>
@@ -16,11 +17,13 @@ const Proposals = () => {
                 </li>
             </ul>
         </section>
-        <button className={styles.FAB}>
-            <Link to="./new">
-                <EditSvg/>
-            </Link>
-        </button>
+        <Accessable required={1}>
+            <button className={styles.FAB}>
+                <Link to="./new">
+                    <EditSvg/>
+                </Link>
+            </button>
+        </Accessable>
     </main>
 }
 
