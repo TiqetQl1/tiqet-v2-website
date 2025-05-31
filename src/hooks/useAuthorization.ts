@@ -24,7 +24,7 @@ export const defaultAccessLevel : AccessLevel ={
         "nftholder": "loading",
         "user": true
     },
-    level: 0
+    level: -1
 }
 
 export function useAuthorization(){
