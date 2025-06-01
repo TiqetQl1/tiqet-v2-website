@@ -8,18 +8,18 @@
         line-height: 28px;
         padding: 10px 0;
     }
-    ul{
+    &>*>ul{
         padding-bottom: 16px;
         li{
             padding: 0;
-            &>div{
+            &{
                 padding: 12px 0;
                 border-bottom: 1px solid var(--md-sys-color-outline-variant);
                 display: flex;
                 flex-flow: row nowrap;
                 gap: 16px;
                 align-items: top;
-                button{
+                &>button{
                     width: 56px;
                     height: 56px;
                     border-radius: var(--border-radius-l);

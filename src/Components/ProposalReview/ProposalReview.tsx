@@ -1,6 +1,10 @@
+import { useParams } from "react-router"
+
 const ProposalReview = () => {
+    const {proposal_id} = useParams()
+
     return <div>
-        ProposalReview
+        ProposalReview {proposal_id}
     </div>
 }
 
