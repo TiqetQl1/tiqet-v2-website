@@ -1,0 +1,65 @@
+.proposalReview{
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 16px;
+    gap: 10px;
+    h2{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+    }
+    h3{
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: start;
+        gap: 12px;
+        button{
+            padding: 0;
+            width: 24px;
+            height: 24px;
+        }
+    }
+    .info{
+        p{
+            padding: 16px;
+            border-radius: var(--border-radius-l);
+            background-color: var(--md-sys-color-surface-container-low);
+            h3{
+                font-size: 16px;
+                line-height: 20px;
+                margin-bottom: 10px;
+                background-color: var(--md-sys-color-surface-container-high);
+                padding: 12px;
+                border-radius: var(--border-radius-m);
+            }
+        }
+    }
+    .input{
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 10px;
+        &>div:not(.options){
+            display: flex;
+            gap: 10px;
+            flex-flow: column nowrap;
+        }
+        textarea{
+            width: 100%;
+            max-width: 100%;
+            min-width: 100%;
+            resize: vertical;
+            min-height: 200px;
+        }
+    }
+    .options {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 12px;
+        .input{
+            padding: var(--border-radius-xl);
+            background-color: var(--md-sys-color-surface-container-highest);
+            border-radius: var(--border-radius-xl);
+        }
+    }
+}
