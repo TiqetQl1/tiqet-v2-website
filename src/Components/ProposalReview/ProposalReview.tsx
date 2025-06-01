@@ -6,7 +6,7 @@ import SendSvg from "@/assets/material-theme/icons/singles/send.svg?react";
 import { useProposal } from "@/hooks/useProposal"
 import { useParams } from "react-router"
 import styles from "./ProposalReview.module.scss"
-import { useEffect, useState, type FC, type ReactNode } from "react"
+import { useEffect, useState, type FC } from "react"
 import { wagmiConfig } from "@/utils/wagmiConfig";
 import { simulateContract, writeContract } from "@wagmi/core";
 import { coreAbi, coreAddress } from "@/utils/Contracts/core";
@@ -90,7 +90,7 @@ const ProposalReview = () => {
             ]
         })
         console.log(metas)
-        const _hash = await writeContract(wagmiConfig, request)
+        await writeContract(wagmiConfig, request)
     }
 
     return <main className={styles.proposalReview}>
