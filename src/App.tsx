@@ -10,6 +10,7 @@ import Lottery from './Components/Lottery/Lottery'
 import BetEvent from './Components/BetEvent/BetEvent'
 import { AccessLevelContext } from './utils/Contexts/accessLevelContext'
 import { useAuthorization } from './hooks/useAuthorization'
+import Accessable from './Components/Shared/Accessable/Accessable'
 
 
 function App() {
@@ -26,9 +27,17 @@ function App() {
         <Route path='lottery' element={<Lottery />}/>
         <Route path='event/:event_id' element={<BetEvent />}/>
         <Route path='proposal'>
-          <Route index         element={<Proposals />}/>
-          <Route path='new'    element={<ProposalNew />}/>
-          <Route path=':proposal_id/review' element={<ProposalReview />} />
+          <Route index element={<Proposals />}/>
+            <Route path='new' element={
+              <Accessable required={1} redirect>
+                  <ProposalNew />
+              </Accessable>
+            }/>
+            <Route path=':proposal_id/review' element={
+              <Accessable required={3} redirect>
+                  <ProposalReview />
+              </Accessable>
+            }/>
         </Route>
         <Route path="*" element={<div>404</div>}/>
       </Route>
