@@ -1,5 +1,5 @@
 .proposals{
-    padding: 0 16px;
+    padding: 16px;
     &, h2, ul, li{
         display: block;
     }
@@ -7,6 +7,53 @@
         font-size: 22px;
         line-height: 28px;
         padding: 10px 0;
+    }
+    ul{
+        padding-bottom: 16px;
+        li{
+            padding: 0;
+            &>div{
+                padding: 12px 0;
+                border-bottom: 1px solid var(--md-sys-color-outline-variant);
+                display: flex;
+                flex-flow: row nowrap;
+                gap: 16px;
+                align-items: top;
+                button{
+                    width: 56px;
+                    height: 56px;
+                    border-radius: var(--border-radius-l);
+                    background-color: var(--md-sys-color-surface-container-high);
+                    fill: var(--md-sys-color-primary);
+                    color: var(--md-sys-color-primary);
+                    border: none!important;
+                }
+                dl{
+                    flex: 1 0 0;
+                }
+                dt{
+                    width: min-content;
+                    min-width: 50%;
+                    font-size: 16px;
+                    line-height: 24px;
+                    font-weight: 600;
+                }
+                dd{
+                    font-size: 14px;
+                    line-height: 20px;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+    footer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        span{
+            font-size: 14px;
+            line-height: 18px;
+        }
     }
     .FAB{
         position: fixed;
