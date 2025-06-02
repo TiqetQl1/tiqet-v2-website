@@ -5,7 +5,7 @@ import { wagmiConfig } from "@/utils/wagmiConfig";
 import { useEffect, useState } from "react";
 import { type Address } from "viem";
 import { readContract } from "@wagmi/core";
-import { useReadContract } from "wagmi";
+import { useReadContract, useWatchContractEvent } from "wagmi";
 
 export type BetData ={
     proposal_id: number,
@@ -42,14 +42,34 @@ export const useEvent
     const [info, setInfo] 
         = useState<BetInfo>({title: "",text: "",image: "",options: []})
 
-    const {data, status} 
+    const {data, status, refetch} 
         = useReadContract({
             config: wagmiConfig,
             address: coreAddress,
             abi: coreAbi,
             functionName: "clientEventGet",
             args: [BigInt(event_id)],
-            chainId: activeChain.id
+            chainId: activeChain.id,
+            query:{
+                refetchOnReconnect: 'always',
+                refetchOnMount: 'always',
+                // notifyOnChangeProps: 'all'
+            }
+    })
+
+    useWatchContractEvent({
+        address: coreAddress,
+        abi: coreAbi,
+        eventName: "EventChanged",
+        batch: false,
+        chainId: activeChain.id,
+        args: {
+            event_id: BigInt(event_id)
+        },
+        onLogs: (log)=>{
+            console.log(log[0])
+            refetch()
+        },
     })
 
     const loadInfo = async () => {
