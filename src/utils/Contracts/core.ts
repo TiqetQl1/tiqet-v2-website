@@ -801,6 +801,30 @@ export const coreAbi = [
 		"inputs": [
 			{
 				"internalType": "uint256",
+				"name": "event_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "addr",
+				"type": "address"
+			}
+		],
+		"name": "clientWagersLength",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
 				"name": "amount_in_qusdt",
 				"type": "uint256"
 			}
