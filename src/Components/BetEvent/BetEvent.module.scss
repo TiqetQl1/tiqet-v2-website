@@ -1,0 +1,151 @@
+.betEvent{
+    padding: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 16px;
+    header{
+        min-height: 300px;
+        height: min-content;
+        display: flex;
+        align-items: end;
+        flex-flow: row nowrap;
+        border-bottom-left-radius: var(--border-radius-xxl);
+        border-bottom-right-radius: var(--border-radius-xxl);
+        overflow: hidden;
+        position: relative;
+        z-index: 0;
+        *{
+            width: 100%;
+            height: 100%;
+        }
+        .imagePlaceHolder, img{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: var(--md-sys-color-surface-container-high);
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .imagePlaceHolder{
+            z-index: -1;
+            padding-bottom: 40px;
+            svg{
+                height: 60px;
+                width : 60px;
+            }
+        }
+        img{
+            z-index: -2;
+            object-fit: cover;
+        }
+        .details{
+            color: var(--md-sys-color-on-primary);
+            background: #000000;
+            width: 100%;
+            padding: 16px;
+            padding-top: 40px;
+            height: min-content;
+            background: linear-gradient(
+                180deg,
+                rgba(255, 255, 255, 0.0) 0%, 
+                rgba(78, 78, 78, 0.25) 25%, 
+                rgba(0, 0, 0, 0.5) 50%);
+            h2{
+                font-size: 45px;
+                line-height: 52px;
+            }
+            h4{
+                font-size: 22px;
+                line-height: 28px;
+                span{
+                    font-size: 16px;
+                    line-height: 20px;
+                }
+            }
+        }
+    }
+    .state{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        h4{
+            font-size: 22px;
+            line-height: 28px;
+            font-weight: 600;
+        }
+        h6{
+            font-size: 14px;
+            line-height: 20px;
+            font-weight: 400;
+        }
+    }
+    .options{
+        padding: 0 16px;
+        h4{
+            padding: 8px 0;
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 400;
+            display: flex;
+            justify-content: space-between;
+        }
+        ul{
+            li{
+                border-top: 1px solid var(--md-sys-color-outline-variant);
+                display: flex;
+                flex-flow: row nowrap;
+                gap: 12px;
+                padding: 8px 0;
+                &>div:nth-child(1){
+                    flex: 0 0 auto;
+                    width: 56px;
+                    height: 56px;
+                    display: flex;
+                    justify-content: stretch;
+                    align-items: start;
+                    flex-flow: row nowrap;
+                    img{
+                        width: 100%;
+                        object-fit:contain;
+                    }
+                }
+                &>div:nth-child(2){
+                    flex: 1 0 0;
+                    h6{
+                        font-size: 16px;
+                        line-height: 24px;
+                        font-weight: 600;
+                    }
+                    p{
+                        font-size: 14px;
+                        line-height: 20px;
+                        font-weight: 400;
+                    }
+                }
+                &>div:nth-child(3){
+                    flex: 0 0 auto;
+                    display: flex;
+                    flex-flow: row nowrap;
+                    align-items: center;
+                    button{
+                        padding: 4px;
+                    }
+                }
+            }
+        }
+    }
+    .wagers{
+
+    }
+    .text{
+        border-top-left-radius: var(--border-radius-xxl);
+        border-top-right-radius: var(--border-radius-xxl);
+        background-color: var(--md-sys-color-on-primary);
+        color: var(--md-sys-color-on-surface);
+        padding: var(--border-radius-xxl);
+        padding-bottom: 10rem;
+    }
+}
