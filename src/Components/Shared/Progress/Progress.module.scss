@@ -1,5 +1,11 @@
 .loading{
     animation: full-spin 600ms ease-in-out 0ms infinite normal forwards;
+    path:first-child{
+        fill: var(--md-sys-color-primary)!important;
+    }
+    path:last-child{
+        fill: var(--md-sys-color-secondary-container)!important;
+    }
 }
 
 @keyframes full-spin {
