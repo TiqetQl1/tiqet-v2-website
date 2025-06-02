@@ -738,6 +738,11 @@ export const coreAbi = [
 						"type": "uint256[]"
 					},
 					{
+						"internalType": "uint256[]",
+						"name": "odd",
+						"type": "uint256[]"
+					},
+					{
 						"internalType": "uint256",
 						"name": "handle",
 						"type": "uint256"
