@@ -72,6 +72,21 @@ export const useEvent
         },
     })
 
+    useWatchContractEvent({
+        address: coreAddress,
+        abi: coreAbi,
+        eventName: "WagerMade",
+        batch: false,
+        chainId: activeChain.id,
+        args: {
+            event_id: BigInt(event_id)
+        },
+        onLogs: (log)=>{
+            console.log(log[0])
+            refetch()
+        },
+    })
+
     const loadInfo = async () => {
         const key = `event_${event_id}_desc`
         if (localStorage.getItem(key) !== null) {
