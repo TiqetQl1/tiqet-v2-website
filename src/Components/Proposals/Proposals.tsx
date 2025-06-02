@@ -22,10 +22,7 @@ const Proposals = () => {
             chainId: activeChain.id,
             config: wagmiConfig,
             address: coreAddress,
-            functionName: "clientGetLastProposalIndex",
-            query:{
-                staleTime: 15_000
-            }
+            functionName: "clientProposalsLength",
     })
 
     const proposalsLength = 
@@ -52,7 +49,7 @@ const Proposals = () => {
                     (
                         proposalsLength == undefined
                     )
-                    ? Array.from({length: 10}).map(_i=><ProposalSkeleton/>)
+                    ? Array.from({length: 6}).map(_i=><ProposalSkeleton/>)
                     : ((proposalsLength==0)
                         ? <li><dl><dt>
                             There are no events proposed yet
@@ -96,19 +93,17 @@ const Proposals = () => {
 
 const ProposalSkeleton = () => {
     return <li>
-        <div>
-            <button>
+        <button>
+            <Skeleton />
+        </button>
+        <dl>
+            <dt>
                 <Skeleton />
-            </button>
-            <dl>
-                <dt>
-                    <Skeleton />
-                </dt>
-                <dd>
-                    <Skeleton count={2}/>
-                </dd>
-            </dl>
-        </div>
+            </dt>
+            <dd>
+                <Skeleton count={2}/>
+            </dd>
+        </dl>
     </li>
 }
 

@@ -1,6 +1,6 @@
 export const coreAddress 
     : `0x${string}` 
-    = `0x${"Cf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9"}`
+    = `0x${"8f86403A4DE0BB5791fa46B8e795C547942fE4Cf"}`
 
 export const coreAbi = [
 	{
@@ -653,6 +653,19 @@ export const coreAbi = [
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "clientEventsLength",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -672,7 +685,7 @@ export const coreAbi = [
 	},
 	{
 		"inputs": [],
-		"name": "clientGetLastProposalIndex",
+		"name": "clientProposalsLength",
 		"outputs": [
 			{
 				"internalType": "uint256",
