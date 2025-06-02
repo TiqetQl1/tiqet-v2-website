@@ -653,6 +653,77 @@ export const coreAbi = [
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "event_id",
+				"type": "uint256"
+			}
+		],
+		"name": "clientEventGet",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "proposal_id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "creator",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "options_count",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "max_per_one_bet",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "chance",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "handle",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "winner",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "vig",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum BetUtils.EventState",
+						"name": "state",
+						"type": "uint8"
+					}
+				],
+				"internalType": "struct Core.ClientEvent",
+				"name": "details",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "clientEventsLength",
 		"outputs": [
@@ -666,24 +737,6 @@ export const coreAbi = [
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "per_page",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "start_index",
-				"type": "uint256"
-			}
-		],
-		"name": "clientEventsPagination",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"name": "clientProposalsLength",
 		"outputs": [
@@ -694,24 +747,6 @@ export const coreAbi = [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "per_page",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "start_index",
-				"type": "uint256"
-			}
-		],
-		"name": "clientProposalsPagination",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
