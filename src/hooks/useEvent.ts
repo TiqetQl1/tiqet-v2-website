@@ -123,9 +123,28 @@ export const useEvent
                     options: []
                 })
             }
+            await setInfo(prev=>{
+                prev.options.sort((a, b)=> b.id-a.id)
+                return {...prev}
+            })
             setIsLoading(false)
         }
+        filterOptions()
     }
+
+    const filterOptions = () => {
+        if (status === "success" && !isLoading) {
+            setInfo(prev=>{
+                const filtered = prev.options.filter((v)=>v.id<data.options_count)
+                return {
+                    ...prev,
+                    options: filtered
+                }
+            })
+        }
+    }
+
+    useEffect(filterOptions,[status, isLoading])
 
     useEffect(()=>{
         loadInfo()
