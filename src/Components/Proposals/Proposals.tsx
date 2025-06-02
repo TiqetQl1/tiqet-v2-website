@@ -49,7 +49,7 @@ const Proposals = () => {
                     (
                         proposalsLength == undefined
                     )
-                    ? Array.from({length: 6}).map(_i=><ProposalSkeleton/>)
+                    ? Array.from({length: 6}).map((_v,i)=><ProposalSkeleton key={`proposal_skeleton_${i}`}/>)
                     : ((proposalsLength==0)
                         ? <li><dl><dt>
                             There are no events proposed yet
