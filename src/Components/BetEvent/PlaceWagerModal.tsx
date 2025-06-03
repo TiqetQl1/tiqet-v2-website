@@ -46,10 +46,10 @@ const PlaceWagerModal
 
 
     const updatePrize = () => setPrize(
-        _prev=>Number((
+        _prev=>Math.floor(
             Number(inputRef.current.value)*
             betEvent.data.odd[toBet]/10000
-        ).toFixed())
+        )
     )
     useEffect(updatePrize,[])
 
