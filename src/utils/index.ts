@@ -19,3 +19,10 @@ export const bigIntToFixed = (value: bigint|number, decimals: bigint|number): st
   }
   return res;
 }
+
+export const preventContextMenu 
+  = (event:React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
+  event.preventDefault();
+  event.stopPropagation();
+  return false;
+}

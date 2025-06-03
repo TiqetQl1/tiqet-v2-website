@@ -6,6 +6,7 @@ import styles from "./BetEvent.module.scss"
 import Progress from "../Shared/Progress/Progress"
 import Skeleton from "react-loading-skeleton"
 import { OptionLi, OptionLiSkeleton } from "./Option"
+import PlaceWagerModal from "./PlaceWagerModal"
 
 const statesTexts = [
     "Open to bet",
@@ -109,11 +110,15 @@ const BetEvent = () => {
                 }
             </p>
         </section>
+        {
+            toBet < 0 ? ''
+            : <PlaceWagerModal 
+                betEvent={betEvent}
+                toBet={toBet}
+                toClose={()=>{setToBet(-1)}}
+                />
+        }
     </main>
-}
-
-const PlaceWagerModal = () => {
-
 }
 
 export default BetEvent

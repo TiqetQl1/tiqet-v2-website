@@ -24,6 +24,7 @@
         overflow: hidden;
         
         li{
+            border: 2px solid transparent;
             position: relative;
             z-index: 0;
             width: 100%;
@@ -88,6 +89,10 @@
                         rgba(78, 78, 78, 0.5) 25%, 
                         rgba(0, 0, 0, 0.75) 50%);
                 }
+            }
+            &:focus,
+            &:focus-within{
+                border: 2px solid var(--md-sys-color-primary);
             }
         }
     }
