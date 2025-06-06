@@ -62,7 +62,7 @@ const BetEvent = () => {
             <StageControl betEvent={betEvent} />
         </Accessable>
         {/* State */}
-        <section className={styles.state}>
+        <section className={styles.h6h6h6}>
             <h4>
                 {
                     betEvent.data_status !== "success" 
@@ -71,7 +71,12 @@ const BetEvent = () => {
                 }
             </h4>
             <h6>
-                &nbsp;
+                {
+                    betEvent.data.state != 2 
+                    ? <>&nbsp;</>
+                    : betEvent.info.options
+                        .filter(v=>v.id == betEvent.data.winner)[0].title
+                }
             </h6>
         </section>
         {/* Options */}
