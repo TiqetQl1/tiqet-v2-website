@@ -67,6 +67,39 @@
             }
         }
     }
+    .stageControl{
+        background-color: var(--md-sys-color-error-container);
+        border: 1px solid var(--md-sys-color-on-error-container);
+        border-radius: var(--border-radius-xxl);
+        margin: 16px;
+        padding: 16px;
+        label{
+            display: block;
+            margin-top: 16px;
+            font-size: 12px;
+            padding-bottom: 4px;
+            line-height: 16px;
+        }
+        select, input{
+            border-radius: var(--border-radius-full);
+            font-size: 14px;
+            line-height: 18px;
+            width: 100%;
+            padding: 4px 12px;
+        }
+        &>div:first-child{
+            display: flex;
+            flex-flow: row nowrap;
+            gap: 8px;
+            &>*{
+                flex: 1 1 0;
+            }
+            button{
+                background-color: var(--md-sys-color-on-error-container);
+                color: var(--md-sys-color-error-container);
+            }
+        }
+    }
     .state{
         display: flex;
         justify-content: center;
@@ -138,7 +171,38 @@
         }
     }
     .wagers{
+        padding: 16px;
+        &>h4{
+            
+        }
+        ul{
+            li{
+                padding: 8px 16px;
+                &:not(:last-child){
+                    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+                }
+                &>div:first-child{
+                    h5{
+                        span{
+                            font-size: 22px;
+                            font-weight: 400;
+                            line-height: 28px;
+                        }
+                        font-size: 24px;
+                        font-weight: 600;
+                        line-height: 32px;
+                    }
+                    &>div{
+                        
+                    }
+                }
+                &>div:last-child{
+                    button{
 
+                    }
+                }
+            }
+        }
     }
     .text{
         border-top-left-radius: var(--border-radius-xxl);

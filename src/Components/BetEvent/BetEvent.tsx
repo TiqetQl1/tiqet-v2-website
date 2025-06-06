@@ -7,6 +7,9 @@ import Progress from "../Shared/Progress/Progress"
 import Skeleton from "react-loading-skeleton"
 import { OptionLi, OptionLiSkeleton } from "./Option"
 import PlaceWagerModal from "./PlaceWagerModal"
+import Accessable from "../Shared/Accessable/Accessable"
+import StageControl from "./StageControl"
+import Wagers from "./Wagers"
 
 const statesTexts = [
     "Open to bet",
@@ -55,6 +58,10 @@ const BetEvent = () => {
             </div>
         </header>
         {/* State */}
+        <Accessable required={3}>
+            <StageControl betEvent={betEvent} />
+        </Accessable>
+        {/* State */}
         <section className={styles.state}>
             <h4>
                 {
@@ -87,20 +94,20 @@ const BetEvent = () => {
                             : 2
                     }).map((_v, i)=><OptionLiSkeleton key={`oskele_${i}`}/>)
                     : betEvent.info.options
-                        .map((option, i)=>
+                        .map((option, _i)=>
                             <OptionLi
-                                chance={betEvent.data.chance[i]}
+                                chance={betEvent.data.chance[option.id]}
                                 onClick={()=>{setToBet(option.id)}}
-                                isOpen={betEvent.data.state===1}
+                                isOpen={betEvent.data.state===0}
                                 option={option}
-                                key={`event_${e_id}_option_${i}`}/>)
+                                key={`event_${e_id}_option_${option.id}`}/>)
                 }
             </ul>
         </section>
         {/* Wagers */}
-        <section className={styles.wagers}>
-
-        </section>
+        <Accessable required={0}>
+            <Wagers betEvent={betEvent} />
+        </Accessable>
         {/* text */}
         <section className={styles.text}>
             <p>
