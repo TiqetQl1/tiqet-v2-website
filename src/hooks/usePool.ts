@@ -4,7 +4,7 @@ import { type Address } from "viem";
 import { useReadContract, useWatchContractEvent } from "wagmi";
 import { poolAbi } from "@/utils/Contracts/pool";
 
-export type PoolConfigs ={
+export type PoolConfigs = {
     organizer: Address,
     time_end: number,
     time_start: number, 
@@ -18,11 +18,18 @@ export type PoolConfigs ={
     cut_per_winner: number
 }
 
-export type PoolStates ={
+export type PoolStates = {
     stage: number,
     tickets_sold: number,
     buyers_count: number,
     raised: number
+}
+
+export type PoolResults = {
+    nft_holders: Address[],
+    winners: Address[],
+    winners_codes: number[],
+    max_raised: number
 }
 
 export type ReturnType = {
@@ -30,6 +37,9 @@ export type ReturnType = {
     configs: PoolConfigs,
     states_status: "error" | "success" | "pending",
     states: PoolStates,
+    states_refetch: ()=>Promise<void>,
+    results_status: "error" | "success" | "pending",
+    results: PoolResults
 }
 
 export type UsePoolSignature = (
@@ -66,8 +76,21 @@ export const usePool
                 refetchOnReconnect: 'always',
                 refetchOnMount: 'always',
                 // notifyOnChangeProps: 'all'
-            }
-    })
+            }})
+
+    const {data: results, status: results_status, refetch: results_refetch} 
+        = useReadContract({
+            config: wagmiConfig,
+            address: address,
+            abi: poolAbi,
+            functionName: "results",
+            args: [],
+            chainId: activeChain.id,
+            query:{
+                refetchOnReconnect: 'always',
+                refetchOnMount: 'always',
+                // notifyOnChangeProps: 'all'
+            }})
 
     useWatchContractEvent({
         address: address,
@@ -83,9 +106,12 @@ export const usePool
         eventName: "StageChanged",
         batch: false,
         chainId: activeChain.id,
-        onLogs: (_log)=>{states_refetch()},
+        onLogs: (_log)=>{
+            states_refetch()
+            results_refetch()
+        },
     })
-
+    
     return {
         configs_status,
         configs: {
@@ -107,6 +133,14 @@ export const usePool
             tickets_sold: Number(states?.tickets_sold) || 0,
             buyers_count: Number(states?.buyers_count) || 0,
             raised: Number(states?.raised) || 0
+        },
+        states_refetch: async()=>{await states_refetch()},
+        results_status,
+        results: {
+            nft_holders: results?.[0].map(v=>v) || [],
+            winners: results?.[1].map(v=>v) || [],
+            winners_codes: results?.[2].map(v=>Number(v)) || [],
+            max_raised: Number(results?.[3] || 0n)
         }
     }
 }

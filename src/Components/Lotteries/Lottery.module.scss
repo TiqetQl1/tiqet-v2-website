@@ -1,3 +1,99 @@
 .lotteries{
-    
+    li{
+        padding: 0 16px;
+        .container{
+            display: flex;
+            flex-flow: column nowrap;
+            gap: 16px;
+            padding-top: 8px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--md-sys-color-outline-variant);
+        }
+        .header{
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            &>*{
+                display: flex;
+                flex-flow: column nowrap;
+                &:last-child{
+                    align-items: end;
+                }
+            }
+            h4{
+                font-size: 22px;
+                font-weight: 600;
+                line-height: 28px;
+            }
+            h5, h4 span{
+                font-size: 12px;
+                font-size: 400;
+                line-height: 16px;
+            }
+        }
+        .states{
+            display: flex;
+            flex-flow: row wrap;
+            padding: 4px 0;
+            gap: 10px;
+            &>*{
+                background-color: var(--md-sys-color-secondary-container);
+                border-radius: var(--border-radius-s);
+                padding: 4px 12px;
+                font-size: 12px;
+                line-height: 16px;
+                font-weight: 400;
+            }
+        }
+        .footer_buy{
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: start;
+            gap: 4px;
+            button{
+                *{
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 16px;
+                    width: 16px;
+                    height: 16px;
+                }
+                border: none;
+                box-shadow: none;
+            }
+        }
+        .footer{
+            &>p{
+                padding-bottom: 12px;
+            }
+            &>div{
+                display: flex;
+                justify-content: end;
+                &>button{
+                    border: none;
+                    background-color: transparent;
+                    color: var(--md-sys-color-primary);
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+            }
+        }
+        .controls{
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: stretch;
+            align-items: stretch;
+            button{
+                border: none;
+                background-color: var(--md-sys-color-error-container);
+                color: var(--md-sys-color-on-error-container);
+            }
+        }
+    }
+    footer{
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+    }
 }
