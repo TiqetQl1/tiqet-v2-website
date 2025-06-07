@@ -1,6 +1,6 @@
 export const coreAddress 
     : `0x${string}` 
-    = `0x${"8f86403A4DE0BB5791fa46B8e795C547942fE4Cf"}`
+    = `0x${"809d550fca64d94Bd9F66E60752A544199cfAC3D"}`
 
 export const coreAbi = [
 	{
