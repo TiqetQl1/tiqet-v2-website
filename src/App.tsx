@@ -6,7 +6,7 @@ import Auth from './Components/Auth/Auth'
 import Proposals from './Components/Proposals/Proposals'
 import ProposalNew from './Components/ProposalNew/ProposalNew'
 import ProposalReview from './Components/ProposalReview/ProposalReview'
-import Lottery from './Components/Lottery/Lottery'
+import Lotteries from './Components/Lotteries/Lotteries'
 import BetEvent from './Components/BetEvent/BetEvent'
 import { AccessLevelContext } from './utils/Contexts/accessLevelContext'
 import { useAuthorization } from './hooks/useAuthorization'
@@ -24,7 +24,7 @@ function App() {
       <Route element={<Layout />}>
         <Route index element={<Landing />} />
         <Route path='wallet' element={<Auth />}/>
-        <Route path='lottery' element={<Lottery />}/>
+        <Route path='lottery' element={<Lotteries />}/>
         <Route path='event/:event_id' element={<BetEvent />}/>
         <Route path='proposal'>
           <Route index element={<Proposals />}/>
