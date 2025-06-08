@@ -13,7 +13,6 @@ import { readContract, simulateContract, writeContract } from "@wagmi/core"
 import { poolAbi } from "@/utils/Contracts/pool"
 import { bigIntToFixed, truncateAddress } from "@/utils"
 import Accessable from "../Shared/Accessable/Accessable"
-import { lotteryAbi, lotteryAddress } from "@/utils/Contracts/lottery"
 import { qusdtAddress } from "@/utils/Contracts/qusdt"
 import useERC20 from "@/hooks/useERC20"
 import Modal from "../Shared/Modal/Modal"
@@ -264,6 +263,24 @@ const PoolControls
 
 export const PoolSkeleton : FC = () => {
     return <li>
-        sk
+        <div className={styles.container}>
+            <div className={styles.header}>
+                <div>
+                    <h5 style={{width:"100px"}}>
+                        <Skeleton />
+                    </h5>
+                    <h4 style={{width:"160px"}}>
+                        <Skeleton />
+                    </h4>
+                </div>
+                <h4 style={{width:"100px"}}>
+                    <Skeleton width={100} style={{marginBottom:4}}/>
+                    <Skeleton width={40} />
+                </h4>
+            </div>
+            <div >
+                <Skeleton width={80} count={1}/>
+            </div>
+        </div>
     </li>
 }

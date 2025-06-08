@@ -26,3 +26,17 @@ export const preventContextMenu
   event.stopPropagation();
   return false;
 }
+
+export type TimeSegments = {
+  days: string,
+  hours: string,
+  minutes: string,
+  seconds: string,
+}
+export const formatTime = (time: number) : TimeSegments => {
+  const days    = String(Math.floor(time / 3600 / 24 ))
+  const hours   = String(Math.floor(time / 3600) % 24).padStart(2,"0")
+  const minutes = String(Math.floor((time % 3600) / 60)).padStart(2, "0")
+  const seconds = String(Math.floor(time % 60)).padStart(2, "0")
+  return {days, hours, minutes, seconds};
+}

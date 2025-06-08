@@ -1,23 +1,36 @@
 import { useEffect, useState, type FC } from "react"
 import { Pool, PoolSkeleton } from "./Pool"
 import styles from "./Lottery.module.scss"
-import { useReadContract } from "wagmi"
+import { useReadContract, useWatchContractEvent } from "wagmi"
 import { wagmiConfig } from "@/utils/wagmiConfig"
 import { lotteryAbi, lotteryAddress } from "@/utils/Contracts/lottery"
 import { activeChain } from "@/utils/Contracts/activeChain"
 import Skeleton from "react-loading-skeleton"
+import Accessable from "../Shared/Accessable/Accessable"
+import PoolNew from "./PoolNew"
 
 const Lotteries = () => {
 
     const [onPage, setOnPage] = useState<number>(0)
 
-    const { data : _poolsLength, status } 
+    const { data : _poolsLength, status, refetch } 
         = useReadContract({
             abi: lotteryAbi,
             chainId: activeChain.id,
             config: wagmiConfig,
             address: lotteryAddress,
             functionName: "poolCount",
+    })
+    useWatchContractEvent({
+        address: lotteryAddress,
+        abi: lotteryAbi,
+        eventName: "PoolCreated",
+        batch: false,
+        chainId: activeChain.id,
+        onLogs: (log)=>{
+            console.log(log[0])
+            refetch()
+        },
     })
 
     const poolsLength = 
@@ -35,6 +48,9 @@ const Lotteries = () => {
     },[status])
 
     return <main className={styles.lotteries}>
+        <Accessable required={4}>
+            <PoolNew />
+        </Accessable>
         <ul>
         {
             (

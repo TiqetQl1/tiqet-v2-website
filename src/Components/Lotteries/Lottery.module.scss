@@ -1,4 +1,20 @@
 .lotteries{
+    .newPool{
+        background-color: var(--md-sys-color-error-container);
+        padding: var(--border-radius-l);
+        border-radius: var(--border-radius-l);
+        &>div{
+            display: flex;
+            flex-flow: column;
+            align-items: stretch;
+            padding: 8px 0;
+        }
+        button{
+            background-color: var(--md-sys-color-on-error-container);
+            color: var(--md-sys-color-error-container);
+            border: none;
+        }
+    }
     li{
         padding: 0 16px;
         .container{
