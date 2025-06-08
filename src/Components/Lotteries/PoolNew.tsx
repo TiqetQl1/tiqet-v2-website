@@ -31,8 +31,9 @@ const PoolNew : FC = () => {
     const create = async () => {
         await setBusyText("Please wait")
         try {
-            args[0] += Math.floor(Date.now()/1000)
-            const args_bigint = args.map(v=>BigInt(v))
+            const tmp = [...args]
+            tmp[0] += Math.floor(Date.now()/1000)
+            const args_bigint = tmp.map(v=>BigInt(v))
             await setBusyText("Calling contract")
             const { request } = await simulateContract(wagmiConfig,{
                 address: lotteryAddress,
@@ -67,7 +68,7 @@ const PoolNew : FC = () => {
         </summary>
         <div key={`pool-input-0`}>
             <label htmlFor={`pool-new-0`}>
-                Ends in {`${timee.days} Days, ${timee.hours} Hours, ${timee.minutes} Minutes`}
+                Ends in {args[0]} {`${timee.days} Days, ${timee.hours} Hours, ${timee.minutes} Minutes`}
             </label>
             <input 
                 disabled={busyText != undefined}
