@@ -51,6 +51,8 @@
             justify-content: start;
             gap: 4px;
             button{
+                border: none;
+                box-shadow: none;
                 *{
                     font-size: 12px;
                     font-weight: 400;
@@ -58,8 +60,6 @@
                     width: 16px;
                     height: 16px;
                 }
-                border: none;
-                box-shadow: none;
             }
         }
         .footer{
@@ -88,6 +88,12 @@
                 border: none;
                 background-color: var(--md-sys-color-error-container);
                 color: var(--md-sys-color-on-error-container);
+                font-size: 12px;
+                line-height: 16px;
+                svg{
+                    width: 16px;
+                    height: 16px;
+                }
             }
         }
     }

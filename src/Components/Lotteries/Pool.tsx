@@ -11,12 +11,13 @@ import { usePool, type ReturnType } from "@/hooks/usePool"
 import Skeleton from "react-loading-skeleton"
 import { readContract, simulateContract, writeContract } from "@wagmi/core"
 import { poolAbi } from "@/utils/Contracts/pool"
-import { truncateAddress } from "@/utils"
+import { bigIntToFixed, truncateAddress } from "@/utils"
 import Accessable from "../Shared/Accessable/Accessable"
 import { lotteryAbi, lotteryAddress } from "@/utils/Contracts/lottery"
 import { qusdtAddress } from "@/utils/Contracts/qusdt"
 import useERC20 from "@/hooks/useERC20"
 import Modal from "../Shared/Modal/Modal"
+import Progress from "../Shared/Progress/Progress"
 
 type PoolProps = {
     laddress: Address
@@ -29,6 +30,7 @@ export const Pool
     const pool = usePool(laddress)
     const [isModalUp, setIsModalUp] = useState<boolean>(false)
     const [myCount, setMyCount] = useState<number>(0)
+    const [buyingText, setBuyingText] = useState<string|undefined>(undefined)
 
     const { address: wallet } = useAccount()
 
@@ -50,13 +52,16 @@ export const Pool
             }
         )
     }
-    useEffect(()=>{refetchMyCount()},[])
+    useEffect(()=>{refetchMyCount()},[wallet])
     
     const qusdt = useERC20(qusdtAddress)
     const buy = async (amount: number =1) => {
+        await setBuyingText("Please waint")
         const real_amount = pool.configs.ticket_price_usdt * amount
         try {
+            await setBuyingText("Waiting for approve")
             await qusdt.approve(laddress, BigInt(real_amount))
+            await setBuyingText("Calling contract")
             const { request } = await simulateContract(wagmiConfig,{
                 address: laddress,
                 abi: poolAbi,
@@ -64,10 +69,14 @@ export const Pool
                 args: [BigInt(amount)]
             })
             const _hash = await writeContract(wagmiConfig, request)
+            await setBuyingText("Done !")
         } catch (error) {
+            await setBuyingText("Failed")
             console.error(error)
             // alert(error)
         }
+        refetchMyCount()
+        setTimeout(()=>{setBuyingText(undefined)}, 5000)
         await pool.states_refetch()
     }
 
@@ -86,6 +95,12 @@ export const Pool
         "Open to join",
         "Closed"
     ]
+
+    const per_winner_cut = Math.floor(
+        pool.results.max_raised
+        /pool.configs.cut_share
+        *pool.configs.cut_per_winner
+    )
 
     if (stage == 0){
         return <PoolSkeleton />
@@ -110,9 +125,9 @@ export const Pool
                                 stage == 3
                                     ? (
                                         pool.results_status === "success"
-                                            ? pool.results.max_raised : <Skeleton />
+                                            ? bigIntToFixed(pool.results.max_raised, 6) : <Skeleton />
                                     )
-                                    : pool.states.raised
+                                    : bigIntToFixed(pool.states.raised, 6)
                             )
                     }$
                     <span>
@@ -136,7 +151,11 @@ export const Pool
                     stage == 2 
                     ?<div className={styles.footer_buy}>
                         {
-                            [1, 2, 5, 10].map((v, i)=><button onClick={()=>{buy(v)}}>
+                            buyingText?.length
+                            ? <button disabled>
+                                <Progress /> {buyingText}
+                            </button>
+                            : [1, 2, 5, 10].map((v, i)=><button onClick={()=>{buy(v)}}>
                                 {i==0?"Buy ":"+"}
                                 {v} <LocalSVG />
                             </button>)
@@ -144,7 +163,7 @@ export const Pool
                     </div>
                     :<div className={styles.footer}>
                         {pool.results.winners.map((v, i)=><p>
-                            {truncateAddress(v)} has won {Math.floor(pool.results.max_raised/pool.configs.cut_share*pool.configs.cut_per_winner)}
+                            {truncateAddress(v)} has won {bigIntToFixed(per_winner_cut, 6)}$
                         </p>)}
                         <div>
                             <button onClick={()=>{setIsModalUp(true)}}>
@@ -228,7 +247,17 @@ const PoolControls
                 remove
             </button> */}
             <button disabled={isLoading} onClick={next}>
-                {isLoading ? "Waiting for wallet" : fns[pool.states.stage]}
+                {
+                isLoading 
+                    ? <>
+                        <Progress/> 
+                        Waiting for wallet
+                    </> 
+                    : <>
+                        {pool.states.stage==5?"Finished - ":''}
+                        {fns[pool.states.stage]}
+                    </>
+                }
             </button>
         </div>
 }
